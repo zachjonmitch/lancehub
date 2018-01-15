@@ -9,7 +9,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-const Message = require('./server/models/message');
+const Message = require('./server/models/Message');
 
 mongoose.Promise = bluebird;
 const db = 'mongodb://localhost/lancehub';
@@ -27,11 +27,11 @@ app.get('*', (req, res) => {
 io.on('connection', (socket) => {
   console.log('made socket connection');
   socket.on('message', (body) => {
-    const newMsg = new Message({
+    const newMessage = new Message({
       name: socket.id.slice(8),
       message: body,
     });
-    newMsg.save((err) => {
+    newMessage.save((err) => {
       if (err) throw err;
       console.log('message saved');
       socket.broadcast.emit('message', {
