@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 
-import { addNewMessage } from '../../actions/messageActions';
+import { addNewMessage, loadPastMessages } from '../../actions/messageActions';
 
 class Chat extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      messages: [],
-    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.socket = io('http://localhost:3001');
     this.socket.on('message', (message) => {
-      this.setState({ messages: [message, ...this.state.messages] });
+      this.props.addNewMessage(message);
+    });
+    this.socket.on('load messages', (docs) => {
+      this.props.loadPastMessages(docs);
     });
   }
 
@@ -31,7 +32,7 @@ class Chat extends Component {
         from: 'Me',
       };
 
-      this.setState({ messages: [message, ...this.state.messages] });
+      this.props.addNewMessage(message);
 
       this.socket.emit('message', body);
       event.target.value = '';
@@ -39,7 +40,7 @@ class Chat extends Component {
   }
 
   render() {
-    const messages = this.state.messages.map((message, index) => {
+    const messages = this.props.messages.map((message, index) => {
       return <li key={index}><b>{message.from}: </b>{message.body}</li>;
     });
     return (
@@ -64,7 +65,16 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ addNewMessage: addNewMessage }, dispatch);
+  return bindActionCreators({ addNewMessage, loadPastMessages }, dispatch);
 }
+
+Chat.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.shape({
+    body: PropTypes.string.isRequired,
+    from: PropTypes.string.isRequired,
+  })).isRequired,
+  addNewMessage: PropTypes.func.isRequired,
+  loadPastMessages: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, matchDispatchToProps)(Chat);

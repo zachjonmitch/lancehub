@@ -26,10 +26,16 @@ app.get('*', (req, res) => {
 // Socket.io server connection
 io.on('connection', (socket) => {
   console.log('made socket connection');
+  Message.find({}, (err, docs) => {
+    if (err) throw err;
+    console.log("sending messages");
+    socket.emit('load messages', docs);
+  });
+
   socket.on('message', (body) => {
     const newMessage = new Message({
-      name: socket.id.slice(8),
-      message: body,
+      from: socket.id.slice(8),
+      body,
     });
     newMessage.save((err) => {
       if (err) throw err;
