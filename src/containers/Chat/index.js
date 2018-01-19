@@ -14,10 +14,18 @@ class Chat extends Component {
   }
 
   componentDidMount() {
+    // Connect to Express server
     this.socket = io('http://localhost:3001');
+
+    // Query Mongodb for past messages on load
+    this.socket.emit('load messages');
+
+    // Broadcast message to all OTHER client Redux stores
     this.socket.on('message', (message) => {
       this.props.addNewMessage(message);
     });
+
+    // Add past messages to Redux store
     this.socket.on('load messages', (docs) => {
       this.props.loadPastMessages(docs);
     });
@@ -28,13 +36,14 @@ class Chat extends Component {
 
     if (event.keyCode === 13 && body) {
       const message = {
+        from: this.socket.id.slice(8),
         body,
-        from: 'Me',
       };
-
+      // Add message to CURRENT client Redux store
       this.props.addNewMessage(message);
 
-      this.socket.emit('message', body);
+      // Send message to server
+      this.socket.emit('message', message);
       event.target.value = '';
     }
   }
@@ -43,6 +52,7 @@ class Chat extends Component {
     const messages = this.props.messages.map((message, index) => {
       return <li key={index}><b>{message.from}: </b>{message.body}</li>;
     });
+
     return (
       <div>
         <h1>Chat Page</h1>
