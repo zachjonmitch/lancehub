@@ -1,0 +1,25 @@
+.sidebar {
+  display: none;
+}
+
+.navbar {
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: grey;
+}
+
+.chat {
+  margin-top: 50px;
+}
+
+.chat-form {
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border: none;
+  border-bottom: 4px solid #4B84FF;
+}

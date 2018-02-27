@@ -1,7 +1,7 @@
 export default (state = [], action) => {
   switch (action.type) {
     case 'ADD_NEW_MESSAGE':
-      return [action.payload, ...state];
+      return [...state, action.payload];
       break;
 
     case 'LOAD_PAST_MESSAGES': {
