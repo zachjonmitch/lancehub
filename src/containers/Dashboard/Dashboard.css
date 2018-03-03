@@ -1,25 +1,52 @@
-.sidebar {
-  display: none;
-}
-
-.navbar {
-  height: 50px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: grey;
-}
-
 .chat {
-  margin-top: 50px;
+  margin-top: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.chat .user {
+  position: relative;
+  margin-top: 40px;
+  z-index: -1;
+}
+
+.chat .avatar {
+  width: 32px;
+  height: 32px;
+  background: #222831;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 0;
+}
+
+.chat .content {
+  margin-left: 42px;
+}
+
+.chat .content h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.chat .content p {
+  margin: 0;
+  padding: 0;
+  padding-top: 5px;
 }
 
 .chat-form {
-  height: 50px;
   position: fixed;
   bottom: 0;
+  height: 70px;
   width: 100%;
   border: none;
   border-bottom: 4px solid #4B84FF;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.chat-form:focus {
+  outline: none;
 }

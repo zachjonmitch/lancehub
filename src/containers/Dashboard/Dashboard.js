@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 import './Dashboard.css';
 
+import Navbar from '../../components/Navbar/Navbar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import { addNewMessage, loadPastMessages } from '../../actions/messageActions';
 
 class Dashboard extends Component {
@@ -51,36 +53,23 @@ class Dashboard extends Component {
 
   render() {
     const messages = this.props.messages.map((message, index) => {
-      return <li key={index}><b>{message.from}: </b>{message.body}</li>;
+      return (
+        <div className="user">
+          <div className="avatar" />
+          <div className="content">
+            <h4>{message.from}</h4>
+            <p>{message.body}</p>
+          </div>
+        </div>
+      );
     });
 
     return (
       <div className="dashboard">
+        <Navbar />
+        <Sidebar />
 
-        <section className="sidebar">
-          <div className="brand">LanceHub</div>
-          <h4>all channels</h4>
-          <ul className="channels">
-            <li>item 1</li>
-            <li>item 2</li>
-            <li>item 3</li>
-          </ul>
-        </section>
-
-        <nav className="navbar">
-          <div className="mobile-menu"><i className="fa fa-bars" /></div>
-          <h4># all-channels</h4>
-          <div className="profile">Profile</div>
-        </nav>
-
-        <section className="chat">
-          <div className="user">
-            <div className="avatar">Image</div>
-            <h4>zjmitche</h4>
-            <p>Testing chat user</p>
-          </div>
-          {messages}
-        </section>
+        <section className="chat">{messages}</section>
 
         <input
           className="chat-form"
