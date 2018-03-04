@@ -5,7 +5,7 @@ class Sidebar extends Component {
   render() {
     return (
       <section className="sidebar">
-        <div className="brand">LanceHub</div>
+        <div className="brand" />
         <h4>all channels</h4>
         <ul className="channels">
           <li>item 1</li>

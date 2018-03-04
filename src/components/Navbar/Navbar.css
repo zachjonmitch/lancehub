@@ -1,8 +1,8 @@
 .navbar {
   height: 50px;
   position: fixed;
-  top: 0;
   left: 0;
+  top: 0;
   right: 0;
   border-bottom: 1px solid #E0E6E8;
   background-color: white;
@@ -49,4 +49,30 @@
   height: 22px;
   background: #222831;
   border-radius: 50%;
+}
+
+@media (min-width: 992px) {
+
+  .navbar {
+    left: 20%;
+    height: 60px;
+  }
+
+  .navbar .mobile-menu {
+    display: none;
+  }
+
+  .navbar .channel {
+    left: 40px;
+  }
+
+  .navbar .channel h4 {
+    font-size: 1.4rem;
+  }
+
+  .navbar .profile-img {
+    width: 25px;
+    height: 25px;
+  }
+
 }
