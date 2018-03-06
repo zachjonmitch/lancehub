@@ -7,6 +7,7 @@ import './Dashboard.css';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import ChatForm from '../../components/ChatForm/ChatForm';
 import { addNewMessage, loadPastMessages } from '../../actions/messageActions';
 
 class Dashboard extends Component {
@@ -38,6 +39,7 @@ class Dashboard extends Component {
     const body = event.target.value;
 
     if (event.keyCode === 13 && body) {
+      event.preventDefault();
       const message = {
         from: this.socket.id.slice(8),
         body,
@@ -71,12 +73,7 @@ class Dashboard extends Component {
 
         <section className="chat">{messages}</section>
 
-        <input
-          className="chat-form"
-          name="message"
-          placeholder="Say something nice..."
-          onKeyUp={this.handleSubmit}
-        />
+        <ChatForm socket={this.socket} addNewMessage={this.props.addNewMessage} />
 
       </div>
     );
