@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 import './Dashboard.css';
 
-import Navbar from '../../components/Navbar/Navbar';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import ChatForm from '../../components/ChatForm/ChatForm';
-import { addNewMessage, loadPastMessages } from '../../actions/messageActions';
+import Navbar from '../App/Navbar';
+import Sidebar from '../App/Sidebar';
+import ChatForm from '../App/ChatForm';
+import { addNewMessage, loadPastMessages } from './actions';
 
 class Dashboard extends Component {
   constructor(props) {

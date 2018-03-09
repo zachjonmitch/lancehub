@@ -3,11 +3,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from '../logo.svg';
 import './App.css';
 
-import Home from './Home/Home';
-import Discuss from './Discuss/Discuss';
-import Chat from './Chat/Chat';
-import Login from './Login/Login';
-import Dashboard from './Dashboard/Dashboard';
+import Login from '../Login/Login';
+import Dashboard from '../Dashboard/Dashboard';
 
 class App extends Component {
   render() {
