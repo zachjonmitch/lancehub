@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './ChatForm.css';
 
 class ChatForm extends Component {
@@ -48,5 +49,9 @@ class ChatForm extends Component {
     );
   }
 }
+
+ChatForm.propTypes = {
+  addNewMessage: PropTypes.func.isRequired,
+};
 
 export default ChatForm;

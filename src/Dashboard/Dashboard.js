@@ -7,6 +7,7 @@ import './Dashboard.css';
 
 import Navbar from '../App/Navbar';
 import Sidebar from '../App/Sidebar';
+import Chat from '../App/Chat';
 import ChatForm from '../App/ChatForm';
 import { addNewMessage, loadPastMessages } from './actions';
 
@@ -54,27 +55,15 @@ class Dashboard extends Component {
   }
 
   render() {
-    const messages = this.props.messages.map((message, index) => {
-      return (
-        <div className="user">
-          <div className="avatar" />
-          <div className="content">
-            <h4>{message.from}</h4>
-            <p>{message.body}</p>
-          </div>
-        </div>
-      );
-    });
-
     return (
       <div className="dashboard">
         <Navbar />
         <Sidebar />
-
-        <section className="chat">{messages}</section>
-
-        <ChatForm socket={this.socket} addNewMessage={this.props.addNewMessage} />
-
+        <Chat
+          socket={this.socket}
+          messages={this.props.messages}
+          addNewMessage={this.props.addNewMessage}
+        />
       </div>
     );
   }
