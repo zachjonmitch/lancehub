@@ -19,14 +19,13 @@ class TextField extends Component {
   }
 }
 
-/*TextField.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  placeholder: React.PropTypes.string.isRequired,
-  value: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string.isRequired,
-  type: React.PropTypes.string.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  classNames: React.PropTypes.string.isRequired
-};*/
+TextField.propTypes = {
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default TextField;
