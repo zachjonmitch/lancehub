@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Chat.css';
 
 import ChatForm from './ChatForm';
 
@@ -19,7 +20,9 @@ class Chat extends Component {
 
     return (
       <section className="chat">
-        {messages}
+        <div className="messages">
+          {messages}
+        </div>
         <ChatForm
           socket={this.props.socket}
           addNewMessage={this.props.addNewMessage}

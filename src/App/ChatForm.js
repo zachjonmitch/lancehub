@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './ChatForm.css';
 
+import TextField from '../App/TextField';
+
 class ChatForm extends Component {
   constructor(props) {
     super(props);
@@ -36,14 +38,16 @@ class ChatForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          className="chat-form"
+      <form className="chat-form" onSubmit={this.handleSubmit}>
+        
+        <TextField 
+          label="Message"
           name="message"
           placeholder="Say something nice..."
           onChange={this.handleChange}
           value={this.state.message}
         />
+
         <button type="button" />
       </form>
     );

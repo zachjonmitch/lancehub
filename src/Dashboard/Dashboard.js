@@ -3,12 +3,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
-import './Dashboard.css';
 
 import Navbar from '../App/Navbar';
 import Sidebar from '../App/Sidebar';
 import Chat from '../App/Chat';
-import ChatForm from '../App/ChatForm';
 import { addNewMessage, loadPastMessages } from './actions';
 
 class Dashboard extends Component {

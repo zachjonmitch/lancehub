@@ -1,0 +1,33 @@
+.chat-form {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.chat-form .control-label {
+  display: none;
+}
+
+.chat-form .form-control {
+  width: 100%;
+  height: 70px;
+  padding-left: 20px;
+  border: none;
+  border-bottom: 4px solid #4B84FF;
+}
+
+.chat-form .form-control:focus {
+  outline: none;
+}
+
+.chat-form button {
+  position: absolute;
+}
+
+@media (min-width: 992px) {
+
+  .chat-form .form-control {
+    padding-left: 50px
+  }
+
+}
