@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import './SignupForm.css';
+import './LoginForm.css';
 
 import TextField from '../App/TextField';
 
-class SignupForm extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
       email: '',
       password: '',
     };
@@ -28,16 +27,7 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <form className="signup-form" onSubmit={this.handleSubmit}>
-
-        <TextField
-          label="Username"
-          name="username"
-          type="text"
-          placeholder="Pick a username"
-          onChange={this.handleChange}
-          value={this.state.username}
-        />
+      <form className="login-form" onSubmit={this.handleSubmit}>
 
         <TextField
           label="Email"
@@ -64,4 +54,4 @@ class SignupForm extends Component {
   }
 }
 
-export default SignupForm;
+export default LoginForm;
