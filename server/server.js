@@ -1,15 +1,24 @@
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const mongodb = require('mongodb');
 const mongoose = require('mongoose');
 const bluebird = require('bluebird');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-const Message = require('./server/models/Message');
+const Message = require('./models/Message');
+const User = require('./models/User');
+
+const api = require('./routes/api');
+const users = require('./routes/api/users');
+const auth = require('./routes/api/auth');
 
 mongoose.Promise = bluebird;
 const db = 'mongodb://localhost/lancehub';
@@ -18,9 +27,27 @@ mongoose.connect(db);
 app.use(express.static('build'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session({
+  secret: 'some random string',
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'build')));
+
+// Configure Passport
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use('/api', api);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/build/index.html'));
+  res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
 // Socket.io server connection
