@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './Login.css';
 
 import LoginForm from './LoginForm';
+import { loginRequest } from './actions';
 
 class Login extends Component {
   render() {
@@ -13,4 +15,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(null, { loginRequest })(Login);

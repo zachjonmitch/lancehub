@@ -73,7 +73,7 @@ function mapStateToProps(state) {
   };
 }
 
-function matchDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addNewMessage, loadPastMessages }, dispatch);
 }
 
@@ -86,4 +86,4 @@ Dashboard.propTypes = {
   loadPastMessages: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

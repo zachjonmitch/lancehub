@@ -1,13 +1,10 @@
 const express = require('express');
-const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const mongodb = require('mongodb');
 const mongoose = require('mongoose');
 const bluebird = require('bluebird');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 
 const app = express();
 const http = require('http').Server(app);
@@ -27,20 +24,6 @@ mongoose.connect(db);
 app.use(express.static('build'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(session({
-  secret: 'some random string',
-  resave: false,
-  saveUninitialized: false,
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'build')));
-
-// Configure Passport
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 app.use('/api', api);
 app.use('/api/users', users);

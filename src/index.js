@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './App/App';
@@ -11,6 +12,7 @@ import allReducers from './reducers';
 const store = createStore(
   allReducers,
   compose(window.devToolsExtension ? window.devToolsExtension() : f => f),
+  applyMiddleware(thunk),
 );
 
 ReactDOM.render(
