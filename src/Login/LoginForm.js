@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './LoginForm.css';
 
 import TextField from '../App/TextField';
@@ -53,5 +54,9 @@ class LoginForm extends Component {
     );
   }
 }
+
+LoginForm.propTypes = {
+  userSignupRequest: PropTypes.func.isRequired,
+};
 
 export default LoginForm;

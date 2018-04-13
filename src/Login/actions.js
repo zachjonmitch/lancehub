@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export function loginRequest(userData) {
+export function userLoginRequest(userData) {
   return dispatch => {
-    return axios.post('/api/users', userData);
+    axios.post('/api/users', userData);
   };
 }

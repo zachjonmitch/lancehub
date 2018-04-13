@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './SignupForm.css';
 
 import TextField from '../App/TextField';
@@ -11,6 +12,7 @@ class SignupForm extends Component {
       username: '',
       email: '',
       password: '',
+      passwordConfirmation: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,7 +25,7 @@ class SignupForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.signupRequest(this.state);
+    this.props.userSignupRequest(this.state);
   }
 
   render() {
@@ -57,11 +59,24 @@ class SignupForm extends Component {
           value={this.state.password}
         />
 
+        <TextField
+          label="Password Confirmation"
+          name="passwordConfirmation"
+          type="text"
+          placeholder="Confirm your password"
+          onChange={this.handleChange}
+          value={this.state.passwordConfirmation}
+        />
+
         <button type="submit">Submit</button>
 
       </form>
     );
   }
 }
+
+SignupForm.propTypes = {
+  userSignupRequest: PropTypes.func.isRequired,
+};
 
 export default SignupForm;
