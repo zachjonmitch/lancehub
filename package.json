@@ -1,42 +1,34 @@
 {
-  "name": "lancehub4",
-  "version": "0.1.0",
-  "private": true,
+  "name": "lancehub",
+  "version": "1.0.0",
+  "description": "A community of U.S freelancers",
+  "main": "server.js",
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "lodash": "^4.17.5",
-    "mongodb": "^3.0.1",
-    "mongoose": "^4.13.9",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "socket.io": "^2.0.4",
-    "uuid": "^3.1.0",
+    "mongodb": "^3.0.7",
+    "mongoose": "^5.0.15",
+    "socket.io": "^2.1.0",
     "validator": "^9.4.1"
   },
+  "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "server": "nodemon ./server/server.js",
-    "start:dev": "concurrently \"npm start\" \"npm run server\""
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd ./client && npm start\" \"nodemon server.js\""
   },
-  "devDependencies": {
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.5.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zjmitche/lancehub.git"
   },
-  "proxy": "http://localhost:3001/"
+  "author": "Zach Mitchell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zjmitche/lancehub/issues"
+  },
+  "homepage": "https://github.com/zjmitche/lancehub#readme"
 }
